@@ -1,14 +1,15 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
-import com.udacity.jwdnd.course1.cloudstorage.mapper.FileMapper;
-import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
-import com.udacity.jwdnd.course1.cloudstorage.model.File;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.udacity.jwdnd.course1.cloudstorage.mapper.FileMapper;
+import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
+import com.udacity.jwdnd.course1.cloudstorage.model.File;
 
 @Service
 public class FileService {
@@ -32,15 +33,17 @@ public class FileService {
         while ((nRead = fis.read(data, 0, data.length)) != -1) {
             buffer.write(data, 0, nRead);
         }
-        buffer.flush();
-        byte[] fileData = buffer.toByteArray();
+        if (nRead != -1){
+            buffer.flush();
+            byte[] fileData = buffer.toByteArray();
 
-        String fileName = multipartFile.getOriginalFilename();
-        String contentType = multipartFile.getContentType();
-        String fileSize = String.valueOf(multipartFile.getSize());
-        Integer userId = userMapper.getUser(userName).getUserId();
-        File file = new File(0, fileName, contentType, fileSize, userId, fileData);
-        fileMapper.insert(file);
+            String fileName = multipartFile.getOriginalFilename();
+            String contentType = multipartFile.getContentType();
+            String fileSize = String.valueOf(multipartFile.getSize());
+            Integer userId = userMapper.getUser(userName).getUserId();
+            File file = new File(0, fileName, contentType, fileSize, userId, fileData);
+            fileMapper.insert(file);
+        }
     }
 
     public File getFile(String fileName) {
