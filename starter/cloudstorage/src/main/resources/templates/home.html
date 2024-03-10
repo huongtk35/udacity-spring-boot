@@ -95,8 +95,8 @@
                                     <a id="ancDeleteNote" class="btn btn-danger"
                                        th:href="@{/note/delete-note/{noteId}(noteId = ${note.getNoteId()})}">Delete</a>
                                 </td>
-                                <th id="tableNoteTitle" scope="row" th:text="${note.getNoteTitle()}">Example Note Title</th>
-                                <td id="tableNoteDescription" th:text="${note.getNoteDescription()}">Example Note Description</td>
+                                <th id="tableNoteTitle" scope="row" th:text="${note.getNoteTitle()}">Note Title</th>
+                                <td id="tableNoteDescription" th:text="${note.getNoteDescription()}">Note Description</td>
                             </tr>
                         </tbody>
                     </table>
@@ -167,9 +167,9 @@
                                 <a class="btn btn-danger" id="aDeleteCredential"
                                    th:href="@{/credential/delete-credential/{credentialId}(credentialId = ${credential.getCredentialid()})}">Delete</a>
                             </td>
-                            <th id="tblCredentialUrl" scope="row" th:text="${credential.getUrl()}">Example Credential URL</th>
-                            <td id="tblCredentialUsername" th:text="${credential.getUserName()}">Example Credential Username</td>
-                            <td id="tblCredentialPassword" th:text="${credential.getPassword()}">Example Credential Password</td>
+                            <th id="tblCredentialUrl" scope="row" th:text="${credential.getUrl()}">Credential URL</th>
+                            <td id="tblCredentialUsername" th:text="${credential.getUserName()}">Credential Username</td>
+                            <td id="tblCredentialPassword" th:text="${credential.getPassword()}">Credential Password</td>
                         </tr>
                         </tbody>
                     </table>
