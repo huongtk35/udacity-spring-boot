@@ -1,3 +1,6 @@
+/**
+ * @author RoseDao
+ */
 package com.udacity.jwdnd.course1.cloudstorage.security;
 
 import org.springframework.context.annotation.Configuration;
