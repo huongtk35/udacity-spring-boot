@@ -78,17 +78,20 @@ public class HomeController {
         MultipartFile multipartFile = newFile.getFile();
         String fileName = multipartFile.getOriginalFilename();
         boolean fileIsDuplicate = false;
-        if (fileListings.length == 0){
+        
+        if(multipartFile.isEmpty()) {
             model.addAttribute("result", "error");
-            model.addAttribute("message", "You need to add a file before click upload.");
-            return "result";
+            model.addAttribute("message", "There is no file upload. Please select the file before clicking the upload button.");
+            return "result" ;
         }
+        
         for (String fileListing: fileListings) {
             if (fileListing.equals(fileName)) {
                 fileIsDuplicate = true;
                 break;
             }
         }
+        
         if (!fileIsDuplicate) {
             fileService.addFile(multipartFile, userName);
             model.addAttribute("result", "success");
